@@ -1,0 +1,7 @@
+<launch>
+	<arg name="robot_id" default="0"/>
+	<node pkg="pathplanning" type="pathplanning" name="pathplanning$(arg robot_id)" >
+		<remap from="/projected_map" to="/robot$(arg robot_id)/projected_map"/>
+		<remap from="/robot_pos"        to="/robot$(arg robot_id)/robot_pos"/>
+	</node>
+</launch>

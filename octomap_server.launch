@@ -1,0 +1,24 @@
+<launch>
+	<arg name="robot_id" default="0"/>	
+	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server$(arg robot_id)">
+                <param name="resolution" value="0.02"/>
+		<param name="robot_h" type="double" value="0.6"/>
+		<param name="height"  type="double" value="1.5"/>
+                <param name="robot_id"  type="int" value="$(arg robot_id)"/>
+                <param name="dynamic_map"         value="true"/>
+                <param name="complete_map"        value="false"/>
+                <param name="robot_id"  type="int" value="$(arg robot_id)"/>
+                <param name="frame_id" value="/robot$(arg robot_id)/world"/>
+
+                <remap from="/tmp/depth" to="/robot$(arg robot_id)/tmp/depth"/>
+                <remap from="/tmp/info" to="/robot$(arg robot_id)/tmp/info"/>
+                <remap from="/tmp/rgb" to="/robot$(arg robot_id)/tmp/rgb"/>
+                <remap from="/tmp/pointcloud" to="/robot$(arg robot_id)/tmp/pointcloud"/>
+
+                <remap from="projected_map" to="/robot$(arg robot_id)/projected_map"/>
+                <remap from="occupied_cells_vis_array" to="/robot$(arg robot_id)/occupied_cells_vis_array"/>
+                <remap from="/octomap/tmp/depth" to="/robot$(arg robot_id)/octomap/tmp/depth"/>
+                <remap from="/octomap/tmp/info" to="/robot$(arg robot_id)/octomap/tmp/info"/>
+                <remap from="/octomap/tmp/rgb" to="/robot$(arg robot_id)/octomap/tmp/rgb"/>
+        </node>
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+	<arg name="robot_id" default="0"/>
+
+	<node pkg="savekeyframe" type="savekeyframe" name="savekeyframe$(arg robot_id)">
+		<param name="robot_id" type="int" value="$(arg robot_id)"/>
+		<param name="world_id" type="string" value="/robot$(arg robot_id)/world"/>
+
+		<remap from="/octomap/tmp/depth" to="/robot$(arg robot_id)/octomap/tmp/depth"/>
+		<remap from="/octomap/tmp/info" to="/robot$(arg robot_id)/octomap/tmp/info"/>
+		<remap from="/octomap/tmp/rgb" to="/robot$(arg robot_id)/octomap/tmp/rgb"/>
+	</node>
+
+</launch>

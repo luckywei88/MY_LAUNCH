@@ -1,0 +1,7 @@
+<launch>
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d /home/lucky/worksapce/launch/my.rviz"/>
+	
+	<include file="$(find nao_description)/launch/upload_nao.launch"/>	
+	
+</launch>

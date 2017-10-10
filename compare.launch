@@ -1,0 +1,9 @@
+<launch>
+	<arg name="num" default="2"/>	
+	<node pkg="compareslam" type="compareslam" name="compareslam" output="screen">
+                <param name="num_of_robots" type="int"  value="$(arg num)"/>
+                <param name="valid_iterations"  type="int" value="20"/>
+		<param name="config/feature_extractor_type"        value="ORB"/><!-- also available: SIFT, SIFTGPU, SURF, SURF128 (extended SURF), ORB. -->
+                <param name="config/feature_detector_type"         value="ORB"/><!-- also available: SIFT, SURF, GFTT (good features to track), ORB. -->
+        </node>
+</launch>

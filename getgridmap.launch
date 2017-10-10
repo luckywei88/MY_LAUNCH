@@ -1,0 +1,9 @@
+<launch>
+	<arg name="robot_id" default="0" doc="robot's id"/>
+	
+	<node pkg="getgridmap" type="getgridmap" name="getgridmap$(arg robot_id)">
+		<param name="robot_id" type="int" value="$(arg robot_id)"/>
+		<remap from="/projected_map" to="/robot$(arg robot_id)/projected_map"/>
+		<remap from="/robot_yaw" to="/robot$(arg robot_id)/robot_yaw"/>
+	</node>
+</launch>

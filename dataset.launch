@@ -1,0 +1,18 @@
+<launch>
+	<arg name="robot_ip" default="192.168.10.107"/>
+	<arg name="roscore_ip" default="192.168.10.104"/>	
+	<arg name="network" default="wlan0"/>
+	<arg name="dataset" default="lab"/>	
+	<include file="$(find openni2_launch)/launch/openni2.launch"/>
+
+	<include file="$(find naoqi_driver)/launch/naoqi_driver.launch">
+		<arg name="nao_ip"                      value="$(arg robot_ip)"/>
+		<arg name="roscore_ip"                      value="$(arg roscore_ip)"/>
+		<arg name="network_interface"                      value="$(arg network)"/>
+	</include>
+	<node pkg="create_dataset" type="create_dataset_node" name="dataset">
+		<param name="dataset" value="$(arg dataset)"/>
+		<remap from="/rgb" to="/camera/rgb/image_raw"/>
+		<remap from="/depth" to="/camera/depth/image_raw"/>
+	</node>
+</launch>

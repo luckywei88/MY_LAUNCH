@@ -1,0 +1,65 @@
+<launch>
+	<arg name="robot_id" default="0" doc="robot's id"/>	
+<!--
+	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server$(arg robot_id)">
+                <param name="resolution" value="0.05"/>
+		<param name="robot_h" type="double" value="10"/>
+		<param name="height"  type="double" value="20"/>
+                <param name="robot_id"  type="int" value="$(arg robot_id)"/>
+                <param name="dynamic_map"         value="true"/>
+                <param name="complete_map"        value="false"/>
+                <param name="robot_id"  type="int" value="$(arg robot_id)"/>
+                <param name="frame_id" value="/robot$(arg robot_id)/world"/>
+
+                <remap from="/tmp/depth" to="/robot$(arg robot_id)/tmp/depth"/>
+                <remap from="/tmp/info" to="/robot$(arg robot_id)/tmp/info"/>
+                <remap from="/tmp/rgb" to="/robot$(arg robot_id)/tmp/rgb"/>
+                <remap from="/tmp/pointcloud" to="/robot$(arg robot_id)/tmp/pointcloud"/>
+
+                <remap from="projected_map" to="/robot$(arg robot_id)/projected_map"/>
+                <remap from="occupied_cells_vis_array" to="/robot$(arg robot_id)/occupied_cells_vis_array"/>
+                <remap from="/octomap/tmp/depth" to="/robot$(arg robot_id)/octomap/tmp/depth"/>
+                <remap from="/octomap/tmp/info" to="/robot$(arg robot_id)/octomap/tmp/info"/>
+                <remap from="/octomap/tmp/rgb" to="/robot$(arg robot_id)/octomap/tmp/rgb"/>
+        </node>
+-->
+	<node pkg="rgbdslam" type="rgbdslam" name="rgbdslam$(arg robot_id)" cwd="node" required="true">
+		<!--Output data settings-->
+		<remap from="/tmp/depth" to="/robot$(arg robot_id)/tmp/depth"/>
+		<remap from="/tmp/info" to="/robot$(arg robot_id)/tmp/info"/>
+		<remap from="/tmp/pointcloud" to="/robot$(arg robot_id)/tmp/pointcloud"/>
+		<remap from="/tmp/rgb" to="/robot$(arg robot_id)/tmp/rgb"/>	
+		<param name="config/tf_robot_world"		   value="/robot$(arg robot_id)/world"/>
+		<param name="config/tf_robot_itself"		   value="/robot$(arg robot_id)/base_link"/>	
+		
+		<!-- Input data settings-->
+		<param name="config/base_frame_name"		   value="/openni_rgb_optical_frame"/>
+		<param name="config/camera_info_topic"		   value="/camera/rgb/camera_info"/>
+		<param name="config/topic_image_mono"              value="/camera/rgb/image_color"/>
+		<param name="config/topic_image_depth"             value="/camera/depth/image"/>
+
+		<!-- These are the default values of some important parameters -->
+		<param name="config/feature_extractor_type"        value="ORB"/><!-- also available: SIFT, SIFTGPU, SURF, SURF128 (extended SURF), ORB. -->
+		<param name="config/feature_detector_type"         value="ORB"/><!-- also available: SIFT, SURF, GFTT (good features to track), ORB. -->
+		<param name="config/detector_grid_resolution"      value="3"/><!-- detect on a 3x3 grid (to spread ORB keypoints and parallelize SIFT and SURF) -->
+		<param name="config/max_keypoints"                 value="600"/><!-- Extract no more than this many keypoints -->
+		<param name="config/max_matches"                   value="300"/><!-- Keep the best n matches (important for ORB to set lower than max_keypoints) -->
+
+		<param name="config/min_sampled_candidates"        value="4"/><!-- Frame-to-frame comparisons to random frames (big loop closures) -->
+		<param name="config/predecessor_candidates"        value="4"/><!-- Frame-to-frame comparisons to sequential frames-->
+		<param name="config/neighbor_candidates"           value="4"/><!-- Frame-to-frame comparisons to graph neighbor frames-->
+		<param name="config/ransac_iterations"             value="100"/>
+		<param name="config/cloud_creation_skip_step"      value="2"/><!-- subsample the images' pixels (in both, width and height), when creating the cloud (and therefore reduce memory consumption) -->
+
+		<param name="config/use_gui"				   value="true"/>
+		<param name="config/min_translation_meter"		   value="0"/>
+		<param name="config/min_rotation_degree"		   value="0"/>
+		param name="config/valid_iterations"			   value="0"/>
+
+		<param name="config/cloud_display_type"            value="POINTS"/><!-- Show pointclouds as points (as opposed to TRIANGLE_STRIP) -->
+		<param name="config/pose_relative_to"              value="largest_loop"/><!-- optimize only a subset of the graph: "largest_loop" = Everything from the earliest matched frame to the current one. Use "first" to optimize the full graph, "inaffected" to optimize only the frames that were matched (not those inbetween for loops) -->
+		<param name="config/backend_solver"                value="pcg"/><!-- pcg is faster and good for continuous online optimization, cholmod and csparse are better for offline optimization (without good initial guess)-->
+		<param name="config/optimizer_skip_step"           value="1"/><!-- optimize only every n-th frame -->
+
+	</node>
+</launch>	

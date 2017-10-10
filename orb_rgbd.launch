@@ -1,0 +1,13 @@
+<launch>
+	<include file="$(find openni2_launch)/launch/openni2.launch"/>
+
+	<node pkg="orb_slam" type="RGBD" name="slam2rgbd">
+		<param name="base_tf"		value="/robot/base"/>
+		<param name="world_tf"		value="/robot/world"/>
+		<param name="bag_of_word"	value="/home/lucky/worksapce/src/orb_slam/Vocabulary/ORBvoc.txt"/>
+		<param name="config"        	value="/home/lucky/worksapce/src/orb_slam/Examples/RGB-D/xtion.yaml"/>
+		<remap from="/rgb"	    	to="/camera/rgb/image_raw"/>
+		<!--remap from="/depth"		to="/camera/depth_registered/sw_registered/image_rect_raw"/-->
+		<remap from="/depth"		to="/camera/depth/image_raw"/>
+	</node>
+</launch>
