@@ -49,8 +49,7 @@
         </node>
 -->
 
-	<!--node pkg="orb_slam" type="RGBD" name="slam2rgbd$(arg robot_id)" output="screen"-->
-	<node pkg="orb_slam" type="RGBD" name="slam2rgbd$(arg robot_id)" >
+	<node pkg="orb_slam" type="RGBD" name="slam2rgbd$(arg robot_id)" output="screen">
 		<param name="ros"		type="bool"	value="True"/>
 		<param name="use_gui"		type="bool"	value="True"/>
 

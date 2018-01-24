@@ -24,7 +24,7 @@
   	
 	<node pkg="nao_apps" type="nao_footsteps.py" name="nao_footsteps" required="true" args="--pip=$(arg robot_ip) --pport=9559"  output="screen"/>
  
-	<node pkg="rviz" type="rviz" name="rviz" args="-d /home/lucky/worksapce/launch/my.rviz"/>
+	<node pkg="rviz" type="rviz" name="rviz" args="-d /home/lucky/workspace/launch/my.rviz"/>
 		
 	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server$(arg robot_id)">
                 <param name="resolution" value="0.04"/>

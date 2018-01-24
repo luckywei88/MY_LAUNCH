@@ -1,0 +1,10 @@
+<launch>
+	<arg name="dataset" default="lab"/>	
+	<include file="$(find openni2_launch)/launch/openni2.launch"/>
+
+	<node pkg="create_dataset" type="create_dataset_node" name="dataset">
+		<param name="dataset" value="$(arg dataset)"/>
+		<remap from="/rgb" to="/camera/rgb/image_raw"/>
+		<remap from="/depth" to="/camera/depth/image_raw"/>
+	</node>
+</launch>

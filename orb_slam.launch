@@ -1,0 +1,27 @@
+<launch>
+
+	<node pkg="rviz" type="rviz" name="rviz" args="-d /home/lucky/workspace/launch/ORB_SLAM.rviz"/>
+
+	<node pkg="orb_slam" type="RGBD" name="slam2rgbd" output="screen">
+		<param name="ros"		type="bool"	value="True"/>
+		<param name="use_gui"		type="bool"	value="True"/>
+
+		<param name="base_tf"		value="/robot_link"/>
+		<param name="world_tf"		value="/map"/>
+		<param name="odom_tf"		value="/odom"/>
+
+		<param name="bag_of_word"	value="/home/lucky/workspace/src/orb_slam/Vocabulary/ORBvoc.txt"/>
+		<param name="config"        	value="/home/lucky/workspace/src/orb_slam/Examples/RGB-D/xtion.yaml"/>
+		<param name="yolo_data"		value="/home/lucky/MyLib/darknet/cfg/coco.data"/>
+		<param name="yolo_cfg"		value="/home/lucky/MyLib/darknet/cfg/tiny-yolo.cfg"/>
+		<param name="yolo_weight"	value="/home/lucky/MyLib/darknet/tiny-yolo.weights"/>
+
+		<remap from="/rgb"	    	to="/camera/rgb/image_raw"/>
+		<remap from="/depth"         	to="/camera/depth/image_raw"/>
+		<remap from="/tmp/pointcloud"	to="/camera/tmp/pointcloud"/>
+		<remap from="/tmp/keyframe"	to="/camera/tmp/keyframe"/>
+		<remap from="/tmp/frame"	to="/camera/tmp/frame"/>
+		<remap from="/tmp/cmd"		to="/camera/tmp/cmd"/>
+	</node>
+
+</launch>

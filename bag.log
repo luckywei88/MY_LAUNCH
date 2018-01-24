@@ -1,0 +1,244 @@
+[31m[ERROR] [1516242112.232684413]: enter ros[0m
+
+ORB-SLAM2 Copyright (C) 2014-2016 Raul Mur-Artal, University of Zaragoza.
+This program comes with ABSOLUTELY NO WARRANTY;
+This is free software, and you are welcome to redistribute it
+under certain conditions. See LICENSE.txt.
+
+Input sensor was set to: RGB-D
+layer     filters    size              input                output
+    0 conv     16  3 x 3 / 1   320 x 240 x   3   ->   320 x 240 x  16
+    1 max          2 x 2 / 2   320 x 240 x  16   ->   160 x 120 x  16
+    2 conv     32  3 x 3 / 1   160 x 120 x  16   ->   160 x 120 x  32
+    3 max          2 x 2 / 2   160 x 120 x  32   ->    80 x  60 x  32
+    4 conv     64  3 x 3 / 1    80 x  60 x  32   ->    80 x  60 x  64
+    5 max          2 x 2 / 2    80 x  60 x  64   ->    40 x  30 x  64
+    6 conv    128  3 x 3 / 1    40 x  30 x  64   ->    40 x  30 x 128
+    7 max          2 x 2 / 2    40 x  30 x 128   ->    20 x  15 x 128
+    8 conv    256  3 x 3 / 1    20 x  15 x 128   ->    20 x  15 x 256
+    9 max          2 x 2 / 2    20 x  15 x 256   ->    10 x   7 x 256
+   10 conv    512  3 x 3 / 1    10 x   7 x 256   ->    10 x   7 x 512
+   11 max          2 x 2 / 1    10 x   7 x 512   ->    10 x   7 x 512
+   12 conv   1024  3 x 3 / 1    10 x   7 x 512   ->    10 x   7 x1024
+   13 conv    512  3 x 3 / 1    10 x   7 x1024   ->    10 x   7 x 512
+   14 conv    425  1 x 1 / 1    10 x   7 x 512   ->    10 x   7 x 425
+   15 detection
+mask_scale: Using default '1.000000'
+Loading weights from /home/lucky/MyLib/darknet/tiny-yolo.weights...Done!
+
+Loading ORB Vocabulary. This could take a while...
+Vocabulary loaded!
+
+
+Camera Parameters: 
+- fx: 285.171
+- fy: 285.171
+- cx: 159.5
+- cy: 119.5
+- k1: 0
+- k2: 0
+- p1: 0
+- p2: 0
+- fps: 30
+- color order: RGB (ignored if grayscale)
+
+ORB Extractor Parameters: 
+- Number of Features: 1000
+- Scale Levels: 8
+- Scale Factor: 1.2
+- Initial Fast Threshold: 20
+- Minimum Fast Threshold: 7
+
+Depth Threshold (Close/Far Points): 7.01333
+show
+New map created with 819 points
+Predicted in 0.109425 seconds.
+cloud 76800
+Predicted in 0.029592 seconds.
+cloud 76800
+12 bottle : 46%
+detect complete
+send complete
+Predicted in 0.028825 seconds.
+cloud 76800
+Predicted in 0.027019 seconds.
+cloud 76800
+[1;31m[pcl::IterativeClosestPoint::computeTransformation] Not enough correspondences found. Relax your threshold parameters.
+[0;m243 tvmonitor : 60%
+detect complete
+send complete
+Predicted in 0.029698 seconds.
+cloud 76800
+243 tvmonitor : 67%
+detect complete
+send complete
+Predicted in 0.029927 seconds.
+cloud 76800
+Predicted in 0.028547 seconds.
+cloud 76800
+171 tvmonitor : 75%
+174 tvmonitor : 47%
+detect complete
+send complete
+Predicted in 0.029629 seconds.
+cloud 76800
+47 bottle : 57%
+66 mouse : 61%
+122 mouse : 53%
+172 tvmonitor : 44%
+262 car : 37%
+detect complete
+send complete
+Predicted in 0.031401 seconds.
+cloud 76800
+66 mouse : 45%
+243 tvmonitor : 49%
+detect complete
+send complete
+Predicted in 0.030622 seconds.
+cloud 76800
+124 mouse : 40%
+244 tvmonitor : 54%
+detect complete
+send complete
+Predicted in 0.028885 seconds.
+cloud 76800
+59 mouse : 36%
+125 mouse : 43%
+128 mouse : 42%
+234 tvmonitor : 49%
+266 car : 67%
+detect complete
+send complete
+Predicted in 0.031158 seconds.
+cloud 76800
+235 tvmonitor : 54%
+267 car : 43%
+detect complete
+send complete
+Predicted in 0.031818 seconds.
+cloud 76800
+121 cup : 66%
+122 person : 71%
+237 tvmonitor : 68%
+detect complete
+send complete
+Predicted in 0.031460 seconds.
+cloud 76800
+90 tvmonitor : 42%
+122 cup : 70%
+124 dog : 36%
+168 tvmonitor : 60%
+detect complete
+send complete
+Predicted in 0.030461 seconds.
+cloud 76800
+91 tvmonitor : 46%
+124 cup : 83%
+125 cup : 50%
+164 tvmonitor : 52%
+detect complete
+send complete
+Predicted in 0.031427 seconds.
+cloud 76800
+30 book : 44%
+43 mouse : 45%
+44 mouse : 35%
+46 cup : 35%
+93 tvmonitor : 69%
+122 keyboard : 74%
+127 cup : 78%
+166 tvmonitor : 42%
+detect complete
+send complete
+Predicted in 0.028512 seconds.
+cloud 76800
+21 book : 40%
+22 book : 37%
+95 tvmonitor : 82%
+113 keyboard : 53%
+128 cup : 79%
+168 tvmonitor : 46%
+detect complete
+send complete
+Predicted in 0.030044 seconds.
+cloud 76800
+47 mouse : 44%
+97 tvmonitor : 55%
+116 keyboard : 41%
+324 person : 38%
+detect complete
+send complete
+Predicted in 0.028669 seconds.
+cloud 76800
+98 tvmonitor : 49%
+324 person : 58%
+detect complete
+send complete
+Predicted in 0.030701 seconds.
+cloud 76800
+95 tvmonitor : 71%
+114 keyboard : 68%
+128 cup : 42%
+detect complete
+send complete
+Predicted in 0.031551 seconds.
+cloud 76800
+95 tvmonitor : 68%
+113 keyboard : 66%
+127 cup : 89%
+detect complete
+send complete
+Predicted in 0.027755 seconds.
+cloud 76800
+22 book : 35%
+101 book : 39%
+105 tvmonitor : 73%
+123 keyboard : 76%
+137 cup : 71%
+detect complete
+send complete
+Predicted in 0.031788 seconds.
+cloud 76800
+102 book : 49%
+105 tvmonitor : 61%
+123 keyboard : 66%
+137 cup : 57%
+detect complete
+send complete
+Predicted in 0.033018 seconds.
+cloud 76800
+45 mouse : 42%
+95 tvmonitor : 51%
+102 book : 37%
+113 keyboard : 53%
+126 cup : 71%
+detect complete
+send complete
+Predicted in 0.031778 seconds.
+cloud 76800
+95 tvmonitor : 60%
+113 keyboard : 64%
+126 cup : 80%
+detect complete
+send complete
+Predicted in 0.031507 seconds.
+cloud 76800
+112 keyboard : 47%
+125 cup : 90%
+detect complete
+send complete
+Predicted in 0.030911 seconds.
+cloud 76800
+94 tvmonitor : 56%
+101 book : 41%
+125 cup : 87%
+detect complete
+send complete
+Predicted in 0.032194 seconds.
+cloud 76800
+33 bottle : 39%
+101 book : 49%
+125 cup : 85%
+detect complete
+send complete
