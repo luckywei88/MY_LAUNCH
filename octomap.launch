@@ -1,0 +1,26 @@
+<launch>
+	<arg name="robot_id" default="0"/>
+		
+	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server$(arg robot_id)" output="screen">
+                <param name="resolution" value="0.04"/>
+		        <param name="robot_h" type="double" 	value="0.1"/>
+		        <param name="filename"  	value="/home/lucky/workspace/src/octomap/octomap_server/cfg/newdata_2000_point.txt"/>
+		        <param name="height"  type="double" 	value="0.6"/>
+                <param name="robot_id"  type="int" 	value="$(arg robot_id)"/>
+                <param name="model"  	type="int" 	value="1"/>
+		        <param name="box"	type="int"	value="2"/>
+                <param name="dynamic_map"         	value="true"/>
+                <param name="complete_map"        	value="false"/>
+
+                <param name="robot_id"  type="int" 	value="$(arg robot_id)"/>
+                <param name="frame_id" 			value="/map"/>
+                <param name="robot_center" 			value="/torso"/>
+
+                <remap from="/tmp/pointcloud" 		to="/robot$(arg robot_id)/tmp/pointcloud"/>
+		        <remap from="/tmp/cmd"			to="/robot$(arg robot_id)/tmp/cmd"/>
+                <remap from="projected_map" 		to="/map"/>
+                <remap from="robot_pos" 		to="/robot$(arg robot_id)/robot_pos"/>
+                <remap from="occupied_cells_vis_array" 	to="/robot$(arg robot_id)/occupied_cells_vis_array"/>
+        </node>
+
+</launch>
