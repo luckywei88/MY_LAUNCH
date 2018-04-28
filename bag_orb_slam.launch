@@ -1,70 +1,30 @@
 <launch>
-	<arg name="robot_id" default="0"/>
+	<arg name="config" 		default="/home/lucky/workspace/src/orb_slam/Examples/RGB-D/xtion.yaml"/>
+	<arg name="yolo_cfg" 		default="/home/lucky/MyLib/darknet/cfg/tiny-yolo.cfg"/>
+	<arg name="yolo_weights" 	default="/home/lucky/MyLib/darknet/tiny-yolo.weights"/>
+	<arg name="yolo_data"		default="/home/lucky/MyLib/darknet/cfg/coco.data"/>
+	<arg name="yolo_label"		default="/home/lucky/MyLib/darknet/data/labels"/>
 
-<!--
-	<node pkg="getmap" type="getmap" name="getmap$(arg robot_id)">
-		<param name="map_tf"			value="/robot$(arg robot_id)/world"/>	
-
-		<remap from="/tmp/pointcloud"		to="/robot$(arg robot_id)/tmp/pointcloud"/>
-		<remap from="/result/pointcloud"	to="/robot$(arg robot_id)/result/pointcloud"/>
-		<remap from="/tmp/cmd"			to="/robot$(arg robot_id)/tmp/cmd"/>
-	</node>	
--->
-<!--
-	<node pkg="getgridmap" type="getgridmap" name="getgridmap$(arg robot_id)">
-		<param name="robot_id" 		type="int" 	value="$(arg robot_id)"/>
-		<remap from="/projected_map" 	to="/robot$(arg robot_id)/projected_map"/>
-		<remap from="/robot_pos" 	to="/robot$(arg robot_id)/robot_pos"/>
-		<remap from="/map/cmd"		to="/octomap/cmd"/>
-	</node>
--->
-<!--	
-	<node pkg="pathplanning" type="pathplanning" name="pathplanning$(arg robot_id)">
-		<remap from="/projected_map" ="/robot$(arg robot_id)/projected_map"/>
-		<remap from="/robot_pos"        to="/robot$(arg robot_id)/robot_pos"/>
-	</node>
--->
-<!--
-	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server$(arg robot_id)">
-                <param name="resolution" value="0.04"/>
-		<param name="robot_h" type="double" 	value="0.1"/>
-		<param name="height"  type="double" 	value="0.6"/>
-                <param name="robot_id"  type="int" 	value="$(arg robot_id)"/>
-                <param name="model"  	type="int" 	value="1"/>
-		<param name="box"	type="int"	value="2"/>
-                <param name="dynamic_map"         	value="true"/>
-                <param name="complete_map"        	value="false"/>
-
-                <param name="robot_id"  type="int" 	value="$(arg robot_id)"/>
-                <param name="frame_id" 			value="/map"/>
-
-                <remap from="/tmp/pointcloud" 		to="/robot$(arg robot_id)/tmp/pointcloud"/>
-		<remap from="/tmp/cmd"			to="/robot$(arg robot_id)/tmp/cmd"/>
-                <remap from="projected_map" 		to="/map"/>
-                <remap from="robot_pos" 		to="/robot$(arg robot_id)/robot_pos"/>
-                <remap from="occupied_cells_vis_array" 	to="/robot$(arg robot_id)/occupied_cells_vis_array"/>
-        </node>
--->
-
-	<!--node pkg="orb_slam" type="RGBD" name="slam2rgbd$(arg robot_id)" output="screen"-->
-	<node pkg="orb_slam" type="RGBD" name="slam2rgbd$(arg robot_id)" >
+	<node pkg="orb_slam" type="RGBD" name="slam2rgbd" output="screen">
 		<param name="ros"		type="bool"	value="True"/>
 		<param name="use_gui"		type="bool"	value="True"/>
 
-		<param name="base_tf"		value="/robot$(arg robot_id)_link"/>
+		<param name="base_tf"		value="/robot_link"/>
 		<param name="world_tf"		value="/map"/>
 		<param name="odom_tf"		value="/odom"/>
 
 		<param name="bag_of_word"	value="/home/lucky/workspace/src/orb_slam/Vocabulary/ORBvoc.txt"/>
-		<param name="config"        	value="/home/lucky/workspace/src/orb_slam/Examples/RGB-D/xtion.yaml"/>
-		<param name="yolo_data"		value="/home/lucky/MyLib/darknet/cfg/coco.data"/>
-		<param name="yolo_cfg"		value="/home/lucky/MyLib/darknet/cfg/tiny-yolo.cfg"/>
-		<param name="yolo_weight"	value="/home/lucky/MyLib/darknet/tiny-yolo.weights"/>
+		<param name="config"        	value="$(arg config)"/>
 
-		<remap from="/rgb"	    	to="/robot$(arg robot_id)/rgb/image_raw"/>
-		<remap from="/depth"         	to="/robot$(arg robot_id)/depth/image_raw"/>
-		<remap from="/tmp/pointcloud"	to="/robot$(arg robot_id)/tmp/pointcloud"/>
-		<remap from="/tmp/cmd"		to="/robot$(arg robot_id)/tmp/cmd"/>
+		<param name="yolo_data"		value="$(arg yolo_data)"/>
+		<param name="yolo_cfg"		value="$(arg yolo_cfg)"/>
+		<param name="yolo_weight"	value="$(arg yolo_weights)"/>
+		<param name="yolo_label"	value="$(arg yolo_label)"/>
+
+		<remap from="/rgb"	    	to="/camera/rgb/image_raw"/>
+		<remap from="/depth"         	to="/camera/depth/image_raw"/>
+		<remap from="/tmp/pointcloud"	to="/camera/tmp/pointcloud"/>
+		<remap from="/tmp/cmd"		to="/camera/tmp/cmd"/>
 	</node>
 
 </launch>

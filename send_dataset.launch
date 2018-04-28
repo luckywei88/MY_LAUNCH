@@ -1,8 +1,10 @@
 <launch>
 	<arg name="dataset" default="my_dataset"/>	
 	<arg name="sequence" default="lab"/>	
+	<arg name="time" default="0"/>	
 
 	<node pkg="send_dataset" type="send_dataset" name="send_dataset"  output="screen">
+		<param name="time" value="$(arg time)"/>
 		<param name="dataset" value="$(arg dataset)"/>
 		<param name="sequence" value="$(arg sequence)"/>
 		<remap from="/rgb" to="/camera/rgb/image_raw"/>
